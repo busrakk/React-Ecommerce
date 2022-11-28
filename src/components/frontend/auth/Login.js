@@ -47,8 +47,15 @@ const Login = () => {
           localStorage.setItem('auth_name', res.data.username);
           swal('Success', res.data.message, 'success');
           setTimeout(() => {
-            navigate('/');
-          }, "1500")
+          //   navigate('/');
+          // }, "1500")
+            if(res.data.role === 'admin'){
+              navigate('/admin/dashboard');
+            }
+            else{
+              navigate('/');
+            }
+          }, "500");
         }else{
           swal('Error', res.data.message, 'error');
           setLoginInput({...loginInput, isLoading: false, error_list: []})

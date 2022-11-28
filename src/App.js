@@ -11,8 +11,10 @@ import Profile from "./components/admin/Profile";
 import Login from "./components/frontend/auth/Login";
 import Register from "./components/frontend/auth/Register";
 import Home from "./components/frontend/Home";
-import MasterLayout from "./layouts/admin/MasterLayout";
+//vimport MasterLayout from "./layouts/admin/MasterLayout";
+import AdminRoute from './protectedRoute/AdminRoute';
 import Master from "./layouts/frontend/Master";
+import Page404 from './layouts/error/Page404';
 
 axios.defaults.baseURL = 'http://127.0.0.1:8000';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -35,7 +37,8 @@ function App(props) {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Route>
-          <Route path="/admin/" element={<MasterLayout />}>
+          {/* <Route path="/admin/" element={<MasterLayout />}> */}
+          <Route path='/admin/' element={<AdminRoute/>} >
             <Route
               path=""
               element={<Navigate replace to="/admin/dashboard" />}
@@ -43,6 +46,7 @@ function App(props) {
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="profile" element={<Profile />} />
           </Route>
+          <Route path='*' element={<Page404 />} />
         </Routes>
       </Router>
     </div>
