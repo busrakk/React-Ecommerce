@@ -6,7 +6,7 @@ import swal from "sweetalert";
 // import {
 //   IoMdSearch,
 // } from 'react-icons/io';
-import { RiAdminLine } from "react-icons/ri";
+import { CiShoppingBasket } from "react-icons/ci";
 import { FaRegEnvelope, FaRegUserCircle } from "react-icons/fa";
 import { MdNotificationsNone } from "react-icons/md";
 
@@ -25,15 +25,15 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-[#F0F5F5] w-full py-6 items-center justify-between flex px-12">
+    <div className="bg-gray-50 drop-shadow-md w-full py-6 items-center justify-between flex px-12">
       {/* search */}
       <div className="w-full lg:flex hidden space-x-4 items-center justify-start py-2">
-        <RiAdminLine className="w-6 h-6" />
+        <CiShoppingBasket className="w-8 h-8" />
         <Link
           to="/admin/dashboard"
           className="text-xl text-gray-900 font-medium"
         >
-          ADMIN
+          ECOMMERCE
         </Link>
         {/* icon */}
         {/* <IoMdSearch className="w-4 h-4" />

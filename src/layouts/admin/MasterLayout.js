@@ -11,7 +11,7 @@ const MasterLayout = (props) => {
       <Navbar />
       <div className="w-full min-h-[90vh] grid grid-cols-12">
         <Sidebar />
-        <div>
+        <div className="grid xl:grid-cols-1 w-full col-span-10">
           <Outlet />
         </div>
       </div>
