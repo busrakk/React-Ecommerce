@@ -14,7 +14,13 @@ import {
   HiOutlineLogout,
 } from "react-icons/hi";
 
-import { MdOutlineSettings } from "react-icons/md";
+import { 
+  MdOutlineSettings
+} from "react-icons/md";
+
+import {
+  RiArrowDropDownLine,
+} from "react-icons/ri";
 
 import { CgProfile } from "react-icons/cg";
 
@@ -68,72 +74,21 @@ const Navbar = () => {
             </>
           )}
 
-          {/*  dropdown yapılacak !!!!  */}
-
-          {/* <li
-            className={`nav-item dropdown ${
-              localStorage.getItem("auth_token") ? "" : "d-none"
-            }`}
-          >
-            <Link to="#">
-              {localStorage.getItem("auth_name")
-                ? localStorage.getItem("auth_name")
-                : "UNDEFIND"}
-            </Link>
-            <div className="font-light">|</div>
-            <Link
-              className="flex text-sm justify-between transition-colors duration-300 transform hover:text-gray-500"
-              to="/admin/profile"
-            >
-              <CgProfile size={20} />
-              Profile
-            </Link>
-            <div className="font-light">|</div>
-            <Link
-              className="flex text-sm justify-between transition-colors duration-300 transform hover:text-gray-500"
-              to="#"
-            >
-              <MdOutlineSettings size={20} />
-              Settings
-            </Link>
-            <div className="font-light">|</div>
-            <Link
-              className="flex text-sm justify-between transition-colors duration-300 transform hover:text-gray-500"
-              to="#"
-              onClick={handleLogout}
-            >
-              <HiOutlineLogout size={20} />
-              Logout
-            </Link>
-          </li>  */}
-
           {/*--------------------------------------------------------- */}
 
-          <div class="relative inline-block text-left">
+          <div className="relative inline-block text-left">
             <div>
               {localStorage.getItem("auth_token") ? 
               <button
                 onClick={handleClick}
                 type="button"
-                class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100"
+                className="inline-flex w-full justify-center rounded-md px-4 py-0.5 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-1 focus:ring-gray-700 focus:ring-offset-1 focus:ring-offset-gray-100"
                 id="menu-button"
                 aria-expanded="true"
                 aria-haspopup="true"
               >
                 Options
-                <svg
-                  class="-mr-1 ml-2 h-5 w-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
+                <RiArrowDropDownLine size={25} />
               </button>
               :
               ""}
@@ -141,18 +96,18 @@ const Navbar = () => {
 
             {showOptions && (
               <div
-                class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                 role="menu"
                 aria-orientation="vertical"
                 aria-labelledby="menu-button"
-                tabindex="-1"
+                // tabindex="-1"
               >
-                <div class="py-1" role="none">
+                <div className="py-1" role="none">
                   <Link
                     to="#"
-                    class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
+                    className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
                     role="menuitem"
-                    tabindex="-1"
+                    // tabindex="-1"
                     id="menu-item-0"
                   >
                     {localStorage.getItem("auth_name")
@@ -162,9 +117,9 @@ const Navbar = () => {
                   <div className="font-light">|</div>
                   <Link
                     to="/admin/profile"
-                    class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
+                    className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
                     role="menuitem"
-                    tabindex="-1"
+                    // tabindex="-1"
                     id="menu-item-1"
                   >
                     <CgProfile size={20} />
@@ -173,9 +128,9 @@ const Navbar = () => {
                   <div className="font-light">|</div>
                   <Link
                     to="#"
-                    class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
+                    className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
                     role="menuitem"
-                    tabindex="-1"
+                    // tabindex="-1"
                     id="menu-item-2"
                   >
                     <MdOutlineSettings size={20} />
@@ -185,9 +140,9 @@ const Navbar = () => {
                   <Link
                     to="#"
                     onClick={handleLogout}
-                    class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
+                    className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
                     role="menuitem"
-                    tabindex="-1"
+                    // tabindex="-1"
                     id="menu-item-3"
                   >
                     <HiOutlineLogout size={20} />
