@@ -34,7 +34,7 @@ export const navLinks = [
         icon: <HiOutlineUser className='nav-icon' />
     },
     {
-        id: 5,
+        id: 4,
         title: "News",
         icon: <HiOutlineChatAlt2 className='nav-icon' />
     },

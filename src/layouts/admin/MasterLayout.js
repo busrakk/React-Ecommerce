@@ -4,9 +4,11 @@ import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 
 import { Outlet } from "react-router-dom";
+import { RecoilRoot } from 'recoil';
 
 const MasterLayout = (props) => {
   return (
+    <RecoilRoot>
     <div>
       <Navbar />
       <div className="w-full min-h-[90vh] grid grid-cols-12">
@@ -17,6 +19,7 @@ const MasterLayout = (props) => {
       </div>
       <Footer />
     </div>
+    </RecoilRoot>
   );
 };
 
