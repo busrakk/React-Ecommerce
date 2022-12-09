@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400&display=swap');
+
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 16px;
+}
+
 @layer components {
     .header-icon {
         @apply w-6 h-6 cursor-pointer

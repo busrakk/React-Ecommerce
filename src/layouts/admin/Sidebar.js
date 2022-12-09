@@ -8,23 +8,9 @@ const Sidebar = () => {
   return (
     <nav className="col-span-2 border-r drop-shadow-md border-gray-200 min-h-[90vh] w-[80px] xl:w-[250px] pt-8 px-1 flex flex-col items-start justify-between">
       <div className="space-y-8 w-full">
-        {navLinks.slice(0, 4).map((link) => (
+        {navLinks.slice(0, 6).map((link) => (
           <NavItem link={link} key={link.id} url={link.url} />
         ))}
-        <div className="w-full border-t border-gray-200">
-          {navLinks.slice(4, 6).map((link) => (
-            <NavItem link={link} key={link.id} url={link.url} />
-          ))}
-        </div>
-      </div>
-      <div className="xl:flex hidden flex-col items-center justify-center space-y-4 p-4">
-        <h1 className="text-xl w-full font-medium">
-          lskjflak
-          <br />
-          sflkf
-        </h1>
-        <p>llakknlfalkfalkjf</p>
-        <button className="w-full py-2 px-3 bg-black text-white">button</button>
       </div>
     </nav>
   );
@@ -40,15 +26,17 @@ function NavItem({ link }) {
         actineNavItem === link.id && "border-gray-900"
       }`}
     >
+      <Link to={link.url} className={`sb-nav-link-icon text-gray-800 group-hover:text-black xl:flex ${
+          actineNavItem === link.id && "text-black"
+        }`}>
+          <span>{link.icon}</span>
+        </Link>
       <Link
-        className={`text-gray-600 group-hover:text-black xl:flex hidden ${
+        className={`text-gray-800 group-hover:text-black hover:font-extrabold xl:flex hidden ${
           actineNavItem === link.id && "text-black"
         }`}
         to={link.url}
       >
-        <div className="sb-nav-link-icon">
-          <span>{link.icon}</span>
-        </div>
         {link.title}
       </Link>
     </div>
