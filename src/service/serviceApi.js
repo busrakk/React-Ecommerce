@@ -18,3 +18,31 @@ export const categoryListApi = async (payload=[]) => {
 export const categoryDeleteApi = async (id, payload=[]) => {
     return sendRequest(POST, `/api/admin/category-delete/${id}`, payload);
 }
+
+export const categoryFindApi = async (id, payload = []) => {
+    return sendRequest(POST, `/api/admin/category/${id}`, payload);
+}
+
+export const categoryUpdateApi = async (id, payload = []) => {
+    return sendRequest(POST, `/api/admin/category-update/${id}`, payload);
+}
+
+export const categoryDropdownApi = async (payload = []) => {
+    return sendRequest(POST, '/api/admin/category-dropdown-list', payload);
+}
+
+export const dashboardDataApi = async (payload = []) => {
+    return sendRequest(POST, '/api/admin/dashboard-data', payload);
+}
+
+export const productSaveApi = async (payload = []) => {
+    return sendRequest(POST, '/api/admin/product-save', payload);
+}
+
+export const productListApi = async (payload = []) => {
+    return sendRequest(POST, '/api/admin/product-list', payload);
+}
+
+export const productFindApi = async (id, payload = []) => {
+    return sendRequest(POST, `/api/admin/product/${id}`, payload);
+}

@@ -25,8 +25,9 @@ export const navLinks = [
     },
     {
         id: 2,
-        title: "Market",
-        icon: <HiOutlineShoppingCart className='nav-icon' />
+        title: "Products",
+        icon: <HiOutlineShoppingCart className='nav-icon' />,
+        url: "/admin/product"
     },
     {
         id: 3,

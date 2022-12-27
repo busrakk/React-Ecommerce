@@ -6,7 +6,7 @@ import { navLinks } from "./utils/sidebarLinks";
 
 const Sidebar = () => {
   return (
-    <nav className="col-span-2 border-r drop-shadow-md border-gray-200 min-h-[90vh] w-[80px] xl:w-[250px] pt-8 px-1 flex flex-col items-start justify-between">
+    <nav className="col-span-2 bg-white drop-shadow-md min-h-[90vh] w-[80px] xl:w-[250px] pt-8 px-1 flex flex-col items-start justify-between">
       <div className="space-y-8 w-full">
         {navLinks.slice(0, 6).map((link) => (
           <NavItem link={link} key={link.id} url={link.url} />
@@ -22,7 +22,7 @@ function NavItem({ link }) {
   return (
     <div
       onClick={() => setActiveNavItem(link.id)}
-      className={`w-full flex items-center justify-start space-x-8 px-5 cursor-pointer group hover:border-gray-900 border-l-4 border-transparent ${
+      className={`w-full flex items-center justify-start space-x-8 px-5 cursor-pointer group hover:font-extrabold hover:border-gray-900 border-l-4 border-transparent ${
         actineNavItem === link.id && "border-gray-900"
       }`}
     >
@@ -32,7 +32,7 @@ function NavItem({ link }) {
           <span>{link.icon}</span>
         </Link>
       <Link
-        className={`text-gray-800 group-hover:text-black hover:font-extrabold xl:flex hidden ${
+        className={`text-gray-800 group-hover:text-black xl:flex hidden ${
           actineNavItem === link.id && "text-black"
         }`}
         to={link.url}

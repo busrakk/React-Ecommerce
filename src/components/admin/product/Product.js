@@ -1,60 +1,42 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState, useEffect } from "react";
 import swal from "sweetalert";
-import {
-  categoryListApi,
-  categoryDeleteApi,
-} from "../../../service/serviceApi";
-
+import { categoryDeleteApi, productListApi } from "../../../service/serviceApi";
 import Modal from "../../elements/Modal";
-import CategoryAddForm from "./CategoryAddForm";
-import CategoryUpdateForm from "./CategoryUpdateForm";
+import CategoryUpdateForm from "../category/CategoryUpdateForm";
+import ProductAdd from "./ProductAdd";
 
 import { BiPlus, BiChevronDown } from "react-icons/bi";
 import { TbTrash } from "react-icons/tb";
 import { HiOutlinePencil, HiOutlineEye } from "react-icons/hi";
 import { IoMdSearch } from "react-icons/io";
 
-const Category = () => {
+function Product() {
   const [isLoading, setIsLoading] = useState(true);
-  const [categoryList, setCategoryList] = useState([]);
-  const [show, setShow] = useState(false);
-  const [categoryId, setCategoryId] = useState(0);
+  const [productList, setProductList] = useState([]);
+  const [show, setShow] = useState(false); //show of hide modal
+  const [productId, setProductId] = useState(0);
 
   useEffect(() => {
-    getCategoryList();
+    getProductList();
   }, []);
 
-  const onClose = (status = "close") => {
-    if (status === "success") {
-      getCategoryList();
-    }
-    setShow(false);
-  };
-
-  const handleModal = (isShow = false, newCategoryId = 0) => {
-    setCategoryId(newCategoryId);
-    setShow(isShow);
-  };
-
-  const getCategoryList = () => {
-    categoryListApi().then((res) => {
+  const getProductList = () => {
+    productListApi().then((res) => {
       if (res.data.success) {
         if (res.data.status === "success") {
           setIsLoading(false);
-          setCategoryList(res.data.data);
+          setProductList(res.data.data);
         }
       } else {
-        setCategoryList([]);
+        setProductList([]);
       }
     });
   };
 
-  const removeCategory = (removeId) => {
-    const newCategory = categoryList.filter(
-      (category) => category.id !== removeId
-    );
-    setCategoryList(newCategory);
+  const removeProduct = (removeId) => {
+    const newProduct = productList.filter((product) => product.id !== removeId);
+    setProductList(newProduct);
   };
 
   const handleDelete = (e, id) => {
@@ -63,29 +45,39 @@ const Category = () => {
       title: "Are you sure?",
       text: "Once deleted, you will not be able to recover this information!",
       icon: "warning",
-      buttons: "True",
-      dangerMode: "true",
+      buttons: true,
+      dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
         categoryDeleteApi(id).then((res) => {
           if (res.data.success) {
             if (res.data.status === "success") {
               swal("Success", res.data.message, "success");
-              removeCategory(id);
+              removeProduct(id);
             }
           } else {
             swal("Error", res.data.message, "error");
           }
         });
-      } else {
       }
     });
   };
 
+  const onClose = (status = "close") => {
+    if (status === "success") {
+      getProductList();
+    }
+    setShow(false);
+  };
+
+  const handleModal = (isShow = false, newProductId = 0) => {
+    setProductId(newProductId);
+    setShow(isShow);
+  };
+
   const renderTableData = () => {
     let view = [];
-    // eslint-disable-next-line array-callback-return
-    categoryList.map((item) => {
+    productList.map((item) => {
       view.push(
         <tr
           key={item.id}
@@ -134,22 +126,16 @@ const Category = () => {
           </td>
         </tr>
       );
+      return view;
     });
     if (view.length === 0) {
       return (
         <tr key="1">
-          <td
-            colSpan={4}
-            className="px-5 py-5 text-sm bg-white border-b border-gray-200"
-          >
-            <div className="flex items-center">
-              <div className="ml-1">
-                <p className="text-gray-900 whitespace-no-wrap">
-                  No Data Found!
-                </p>
-              </div>
-            </div>
-          </td>
+          <div className="flex justify-center p-3 items-center">
+            <span className="capitalize font-medium text-lg">
+              No Data found
+            </span>
+          </div>
         </tr>
       );
     } else {
@@ -162,7 +148,9 @@ const Category = () => {
       <div className="min-w-screen mt-10 flex items-center justify-center bg-gray-100 font-sans overflow-hidden">
         <div className="w-full lg:w-5/6">
           <div className="flex justify-between">
-            <h2 className="text-2xl font-semibold leading-tight">Category List</h2>
+            <h2 className="text-2xl font-semibold leading-tight">
+              Product List
+            </h2>
             <div className="flex justify-end mt-2 mr-1">
               {/* <Link to="/admin/category-add"> */}
               <button
@@ -170,7 +158,7 @@ const Category = () => {
                 className="flex items-center px-3 py-2 text-xs font-normal text-indigo-900 capitalize transition-colors duration-300s bg-indigo-300/50 rounded-lg hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-80"
               >
                 <BiPlus className="font-bold" size={20} />
-                <span className="mx-1">Add Category</span>
+                <span className="mx-1">Add Product</span>
               </button>
               {/* </Link> */}
             </div>
@@ -239,7 +227,7 @@ const Category = () => {
                 {!isLoading && renderTableData()}
               </tbody>
             </table>
-            <div className="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
+            <div className="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
               <div className="inline-flex mt-2 xs:mt-0">
                 <button className="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-l">
                   Prev
@@ -254,18 +242,18 @@ const Category = () => {
       </div>
 
       <Modal
-        title={categoryId !== 0 ? "Update Category" : "Add Category"}
+        title={productId !== 0 ? "Update Product" : "Add Product"}
         onClose={onClose}
         show={show}
       >
-        {categoryId !== 0 ? (
-          <CategoryUpdateForm onClose={onClose} categoryId={categoryId} />
+        {productId !== 0 ? (
+          <CategoryUpdateForm onClose={onClose} productId={productId} />
         ) : (
-          <CategoryAddForm onClose={onClose} />
+          <ProductAdd show={show} onClose={onClose} />
         )}
       </Modal>
     </div>
   );
-};
+}
 
-export default Category;
+export default Product;

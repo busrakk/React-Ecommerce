@@ -31,8 +31,8 @@ const Navbar = () => {
     e.preventDefault();
     axios.post("/api/logout").then((res) => {
       if (res.data.success) {
-        localStorage.removeItem("auth_token");
-        localStorage.removeItem("auth_name");
+        localStorage.removeItem("__rea_token");
+        localStorage.removeItem("__rea_auth_name");
         swal("Success", res.data.message, "success");
         navigate("/");
       }
@@ -51,7 +51,7 @@ const Navbar = () => {
     <div className="bg-white fixed top-0 z-50 w-full">
       <header className="relative bg-white z-50">
         <div className="flex h-7 items-center justify-end space-x-8 tracking-tighter bg-black px-8 text-[14px] text-white sm:px-10 lg:px-12">
-          {!localStorage.getItem("auth_token") && (
+          {!localStorage.getItem("__rea_token") && (
             <>
               <div className="font-light">|</div>
               <Link
@@ -78,7 +78,7 @@ const Navbar = () => {
 
           <div className="relative inline-block text-left">
             <div>
-              {localStorage.getItem("auth_token") ? 
+              {localStorage.getItem("__rea_token") ? 
               <button
                 onClick={handleClick}
                 type="button"
@@ -110,8 +110,8 @@ const Navbar = () => {
                     // tabindex="-1"
                     id="menu-item-0"
                   >
-                    {localStorage.getItem("auth_name")
-                    ? localStorage.getItem("auth_name")
+                    {localStorage.getItem("__rea_auth_name")
+                    ? localStorage.getItem("__rea_auth_name")
                     : "UNDEFIND"}
                   </Link>
                   <div className="font-light">|</div>
